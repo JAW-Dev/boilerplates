@@ -1,9 +1,0 @@
-/node_modules/
-/src/
-/tests/
-/config/
-/vendor/
-
-*.js
-
-webpack.config.js

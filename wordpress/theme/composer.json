@@ -1,0 +1,24 @@
+{
+	"name": "project-author/project-name",
+	"description": "Project Description",
+	"version": "Project_Version",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "project-author"
+		}
+	],
+	"config": {
+		"optimize-autoloader": true,
+		"classmap-authoritative": true
+	},
+	"autoload": {
+		"psr-4": {
+			"ProjectNamespace\\": "includes/classes"
+		},
+		"classmap": [
+			"includes/classes"
+		],
+		"files": []
+	}
+}

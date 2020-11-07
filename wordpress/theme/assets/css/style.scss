@@ -1,0 +1,22 @@
+@charset "UTF-8";
+// ========================================
+// Styles
+// ========================================
+
+@import 'mixins/tailwind';
+
+@include purgecss-start(config('process.tailwind'));
+
+@import 'wp-header';
+
+@include purgecss-end(config('process.tailwind'));
+
+// Dependencies
+@import 'dependencies';
+
+@include load-tailwind(config('process.tailwind'));
+@include purgecss-start(config('process.tailwind'));
+
+@import '_partials/**/*.scss';
+
+@include purgecss-end(config('process.tailwind'));

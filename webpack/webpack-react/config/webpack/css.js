@@ -13,17 +13,14 @@ const sass = require('node-sass');
 const sassUtils = require('node-sass-utils')(sass);
 
 const purgecss = require('@fullhuman/postcss-purgecss')({
-	content: [
-		path.resolve(__basedir, './**/*.php'),
-		path.resolve(__basedir, './**/*.html')
-	],
+	content: [path.resolve(__basedir, './**/*.php'), path.resolve(__basedir, './**/*.html')],
 	defaultExtractor: content => {
-		const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || []
-		const innerMatches = content.match(/[^<>"'`\s.()]*[^<>"'`\s.():]/g) || []
+		const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
+		const innerMatches = content.match(/[^<>"'`\s.()]*[^<>"'`\s.():]/g) || [];
 
-		return broadMatches.concat(innerMatches)
+		return broadMatches.concat(innerMatches);
 	}
-})
+});
 
 module.exports = (options, coreConfig, settings, devMode) => {
 	const cssPurge = process.env.NODE_ENV === 'production' ? [purgecss] : [];
@@ -38,7 +35,10 @@ module.exports = (options, coreConfig, settings, devMode) => {
 				},
 				{
 					loader: 'css-loader',
-					options: { sourceMap: !!(devMode && coreConfig.sourcemaps.css) }
+					options: {
+						modules: true,
+						sourceMap: !!(devMode && coreConfig.sourcemaps.css)
+					}
 				},
 				{
 					loader: 'postcss-loader',

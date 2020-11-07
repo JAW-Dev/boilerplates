@@ -5,6 +5,7 @@
 	"scripts": {
 		"build": "NODE_ENV=production webpack",
 		"watch": "NODE_ENV=development webpack --fix",
+		"start": "NODE_ENV=development webpack-dev-server",
 		"test:unit": "jest",
 		"test:unit:watch": "jest --watch",
 		"test:unit:coverage": "jest --coverage",
@@ -19,6 +20,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.10.3",
 		"@babel/preset-env": "^7.10.3",
+		"@babel/preset-react": "^7.12.5",
 		"@babel/preset-typescript": "^7.10.1",
 		"@fullhuman/postcss-purgecss": "^2.3.0",
 		"@types/jest": "^26.0.0",
@@ -35,6 +37,8 @@
 		"eslint-config-prettier": "6.10.0",
 		"eslint-plugin-import": "^2.21.2",
 		"eslint-plugin-prettier": "^3.1.4",
+		"eslint-plugin-react": "^7.21.5",
+		"eslint-plugin-react-hooks": "^4.2.0",
 		"file-loader": "^6.0.0",
 		"html-webpack-plugin": "^4.5.0",
 		"imagemin-gifsicle": "^7.0.0",
@@ -82,17 +86,29 @@
 			],
 			[
 				"@babel/preset-typescript"
+			],
+			[
+				"@babel/preset-react"
 			]
 		]
 	},
 	"eslintConfig": {
 		"parser": "babel-eslint",
+		"parserOptions": {
+			"ecmaFeatures": {
+				"jsx": true
+			}
+		},
 		"extends": [
 			"airbnb-base",
-			"plugin:prettier/recommended"
+			"plugin:prettier/recommended",
+			"plugin:react/recommended",
+			"plugin:react-hooks/recommended"
 		],
 		"plugins": [
-			"prettier"
+			"prettier",
+			"react",
+			"react-hooks"
 		],
 		"rules": {
 			"import/no-extraneous-dependencies": [
@@ -216,5 +232,11 @@
 			"at-rule-no-unknown": null,
 			"scss/at-rule-no-unknown": true
 		}
+	},
+	"dependencies": {
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"react-router-dom": "^5.2.0",
+		"web-vitals": "^0.2.4"
 	}
 }

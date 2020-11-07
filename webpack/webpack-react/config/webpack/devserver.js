@@ -1,5 +1,5 @@
 // Import Modules.
-const path = require('path')
+const path = require('path');
 
 module.exports = {
 	contentBase: path.join(__dirname, 'src'),
@@ -11,4 +11,5 @@ module.exports = {
 	hot: true,
 	historyApiFallback: true,
 	overlay: true,
-}
+	open: true
+};

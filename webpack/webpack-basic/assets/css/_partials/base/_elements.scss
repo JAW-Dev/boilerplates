@@ -1,0 +1,58 @@
+@charset "UTF-8";
+// ========================================
+// HTML Elements
+// ========================================
+
+embed,
+iframe,
+object {
+	max-width: 100%;
+}
+
+hr {
+  width: auto;
+	height: rem(1);
+	margin: 0 0 rem($font-size-base) 0;
+	background-color: $color-background-hr;
+  border: none;
+}
+
+figure {
+	margin: 0;
+}
+
+ul,
+ol {
+	margin: 0 0 rem($font-size-base) rem($font-size-base);
+}
+
+ul {
+	list-style: disc;
+}
+
+ol {
+	list-style: decimal;
+}
+
+li > ul,
+li > ol {
+	margin: 0 0 0 rem($font-size-base);
+}
+
+dt {
+	font-weight: 700;
+}
+
+dd {
+	margin: 0 rem($font-size-base) rem($font-size-base) 0;
+}
+
+table {
+  width: 100%;
+	height: auto;
+	margin: 0 0 rem($font-size-base) 0;
+}
+
+th {
+	font-weight: 700;
+}

@@ -1,4 +1,4 @@
-// Import Modules.
+// Require Modules.
 const path = require('path')
 
 module.exports = {

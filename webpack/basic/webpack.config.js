@@ -5,13 +5,13 @@ const coreConfig = require('./config/webpack/core-config');
 const stats = require('./config/webpack/stats');
 const devServer = require('./config/webpack/devserver');
 
-const devMode = process.env.NODE_ENV !== 'production';
+const devMode = process.argv[process.argv.indexOf('--mode') + 1] !== 'production';
 
 const settings = {
 	mode: coreConfig.mode,
 	target: coreConfig.target,
 	context: coreConfig.context,
-	devtool: devMode && (coreConfig.sourcemaps.js || coreConfig.sourcemaps.css) ? 'source-map' : '',
+	devtool: devMode && (coreConfig.sourcemaps.js || coreConfig.sourcemaps.css) ? 'source-map' : false,
 	entry: config.entry,
 	output: coreConfig.output,
 	externals: coreConfig.externals,

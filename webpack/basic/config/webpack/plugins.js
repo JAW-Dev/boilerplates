@@ -1,10 +1,9 @@
 // Import Packages.
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const ImageminPlugin = require('imagemin-webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (options, coreConfig, settings) => {
 	// https://github.com/johnagan/clean-webpack-plugin
@@ -17,9 +16,9 @@ module.exports = (options, coreConfig, settings) => {
 		settings.plugins.push(new MiniCssExtractPlugin(coreConfig.MiniCssExtractPlugin));
 	}
 
-	// https://github.com/fqborges/webpack-fix-style-only-entries
-	if (options.plugins.FixStyleOnlyEntriesPlugin) {
-		settings.plugins.push(new FixStyleOnlyEntriesPlugin(coreConfig.FixStyleOnlyEntriesPlugin));
+	// https://github.com/webdiscus/webpack-remove-empty-scripts
+	if (options.plugins.RemoveEmptyScriptsPlugin) {
+		settings.plugins.push(new RemoveEmptyScriptsPlugin(coreConfig.RemoveEmptyScriptsPlugin));
 	}
 
 	// https://github.com/itgalaxy/imagemin-webpack
@@ -30,10 +29,5 @@ module.exports = (options, coreConfig, settings) => {
 	// https://github.com/webpack-contrib/webpack-bundle-analyzer
 	if (options.plugins.BundleAnalyzerPlugin) {
 		settings.plugins.push(new BundleAnalyzerPlugin(coreConfig.BundleAnalyzerPlugin));
-	}
-
-	// https://github.com/jantimon/html-webpack-plugin
-	if (options.plugins.HtmlWebpackPlugin) {
-		settings.plugins.push(new HtmlWebpackPlugin(coreConfig.HtmlWebpackPlugin));
 	}
 };

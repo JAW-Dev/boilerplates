@@ -14,11 +14,7 @@ module.exports = (options, coreConfig, settings) => {
 		if (coreConfig.minimize.js) {
 			settings.optimization.minimizer.push(
 				// https://github.com/webpack-contrib/terser-webpack-plugin
-				new TerserPlugin({
-					sourceMap: coreConfig.sourcemaps.js,
-					cache: true,
-					parallel: true
-				})
+				new TerserPlugin()
 			);
 		}
 	}

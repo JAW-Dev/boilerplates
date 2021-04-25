@@ -1,9 +1,9 @@
 /* global __basedir */
 
-// Import Modules.
+// Require Modules.
 const path = require('path');
 
-const devMode = process.env.NODE_ENV !== 'production';
+const devMode = process.argv[process.argv.indexOf('--mode') + 1] !== 'production';
 const destinationPath = `${__basedir}/src`;
 
 module.exports = {
@@ -16,12 +16,14 @@ module.exports = {
 		sourceMapFilename: '[file].map'
 	},
 	destinationPath,
-	watch: !!devMode,
+	watch: devMode ? true : false,
 	watchOptions: {
 		poll: true,
 		ignored: /node_modules/
 	},
-	externals: {},
+	externals: {
+		jquery: 'jQuery',
+	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js']
 	},
@@ -111,9 +113,5 @@ module.exports = {
 	},
 	BundleAnalyzerPlugin: {
 		analyzerMode: 'static'
-	},
-	HtmlWebpackPlugin: {
-		filename: 'index.html',
-		template: path.resolve(__basedir, 'assets/html/index.html')
 	}
 };

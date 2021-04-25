@@ -1,22 +1,20 @@
 /* global __basedir */
 
-// Import Modules.
+// Require Modules.
 const path = require('path');
 
 // Import Packages
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoPrefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+const tailwind = require('tailwindcss');
 const globImporter = require('node-sass-glob-importer');
 const jsonImporter = require('node-sass-json-importer');
 const sass = require('node-sass');
 const sassUtils = require('node-sass-utils')(sass);
 
 const purgecss = require('@fullhuman/postcss-purgecss')({
-	content: [
-		path.resolve(__basedir, './**/*.php'),
-		path.resolve(__basedir, './**/*.html')
-	],
+	content: [path.resolve(__basedir, './includes/**/*.php')],
 	defaultExtractor: content => {
 		const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || []
 		const innerMatches = content.match(/[^<>"'`\s.()]*[^<>"'`\s.():]/g) || []
@@ -27,7 +25,12 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
 
 module.exports = (options, coreConfig, settings, devMode) => {
 	const cssPurge = process.env.NODE_ENV === 'production' ? [purgecss] : [];
-	const postcssPlugins = [autoPrefixer({ grid: true }), ...cssPurge];
+	const postcssPlugins = [autoPrefixer({ grid: true })];
+
+	if (options.process.tailwind) {
+		postcssPlugins.push(tailwind);
+		postcssPlugins.push(...cssPurge);
+	}
 
 	if (options.process.css) {
 		settings.module.rules.push({
@@ -43,9 +46,10 @@ module.exports = (options, coreConfig, settings, devMode) => {
 				{
 					loader: 'postcss-loader',
 					options: {
-						ident: 'postcss',
-						plugins: postcssPlugins,
-						sourceMap: !!(devMode && coreConfig.sourcemaps.css)
+						postcssOptions: {
+							plugins: postcssPlugins,
+							sourceMap: !!(devMode && coreConfig.sourcemaps.css)
+						},
 					}
 				},
 				{

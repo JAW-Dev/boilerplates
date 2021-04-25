@@ -218,6 +218,7 @@
 			"function-url-quotes": "always",
 			"function-parentheses-space-inside": "never",
 			"max-empty-lines": 1,
+			"no-invalid-position-at-import-rule": null,
 			"scss/dollar-variable-colon-space-after": "always",
 			"scss/dollar-variable-colon-space-before": "never",
 			"scss/dollar-variable-no-missing-interpolation": true,
